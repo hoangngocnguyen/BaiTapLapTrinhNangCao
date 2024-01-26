@@ -1,33 +1,48 @@
 #include<iostream>
 #include<iomanip>	// sd setprecision
-#include<map>
 #include <algorithm>	// sd ham  sort
 #include <cstdlib> // sd system (exit, cls)
 using namespace std;
+void menu();
+void nhap_n(int &n);
 void nhapMang(int *a, int n);
 void cauB(int *a, int n);
 void cauC(int *a, int n);
 void cauD(int *a, int n);
 void cauE(int *a, int n);
 void nhap(int *a, int &n);
-void XuLiChucNang(int rs);
-void nhapMang(int *a, int n){
-		for(int i=0;i<n;i++){
-		cin>> a[i];
+void XuLiChucNang(int rs, int *a, int n);
+
+int main(){
+	int n;
+	nhap_n(n);
+	int *a = new int[n];
+	nhapMang(a,n);
+	//system("cls");
+	menu();
+	// xu li chuc nang
+	int rs;
+	while(1){
+		XuLiChucNang(rs, a, n);
 	}
+	delete[] a;
+	return 0;
 }
 void cauB(int *a, int n){
 	int min = a[0], max = a[0];
+	int i_min =0, i_max = 0;
 	for(int i=1; i<n; i++){
 		if(a[i] < min){
 			min = a[i];
+			i_min = i;
 		}
 		if(a[i] > max){
 			max = a[i];
+			i_max = i;
 		}
 	}
 	// in ra min, max
-	cout<<"Min = "<< min<<" va Max = "<<max<<endl;
+	cout<<"Min = a["<<i_min<<"]= "<< min<<" va Max = a["<<i_max<<"]= "<<max<<endl;
 }
 void cauC(int *a, int n){
 	long long tongAm = 0, tongDuong = 0;
@@ -108,14 +123,19 @@ void cauE(int *a, int n){
 	}
 			
 }
-void nhap(int *a, int &n){
+void nhap_n(int &n){
 	do{
 		cout<<"Nhap so phan tu cua mang a: ";
 		cin>>n;
 	}
 	while (n>50);
+	
+}
+void nhapMang(int *a, int n){
 	cout<<"Nhap cac phan tu vao mang a: ";
-	nhapMang(a,n);
+	for(int i=0;i<n;i++){
+		cin>> a[i];
+	}
 }
 void XuLiChucNang(int rs, int *a, int n){
 	do{
@@ -126,19 +146,15 @@ void XuLiChucNang(int rs, int *a, int n){
 	
 	switch(rs){
 		case 1:
-			nhap(a,n);
 			cauB(a,n);
 			break;
 		case 2:
-			nhap(a,n);
 			cauC(a,n);
 			break;
 		case 3:
-			nhap(a,n);
 			cauD(a,n);
 			break;
 		case 4:
-			nhap(a,n);
 			cauE(a,n);
 			break;
 		case 5:
@@ -148,12 +164,8 @@ void XuLiChucNang(int rs, int *a, int n){
 			break;
 	}
 }
-int main(){
-	int n;
-	int *a = new int[n];
-	
-	//system("cls");
-	cout<<"MENU"<<endl;
+void menu(){
+		cout<<"MENU"<<endl;
 	cout<<setfill('-')<<setw(25)<<" "<<endl;
 	cout<<"Vui long chon 1 trong cac chuc nang duoi!"<<endl;
 	cout<<"1. Tim phan tu min-max cua mang"<<endl;
@@ -161,15 +173,4 @@ int main(){
 	cout<<"3. Kiem tra mot so co xuat hien trong mang khong"<<endl;
 	cout<<"4. Kiem tra mang co sap xep tang dan khong"<<endl;
 	cout<<"5. Thoat chuong trinh"<<endl;
-	// xu li chuc nang
-	int rs;
-	while(1){
-		XuLiChucNang(rs, a, n);
-		delete[] a;
-	}
-	
-	
-	
-	return 0;
-	
 }

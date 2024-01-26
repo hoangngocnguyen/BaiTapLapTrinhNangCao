@@ -22,6 +22,7 @@ int Ptb2(double a, double b, double c, double *x1, double *x2){
 }
 int main(){
 	double a,b,c,x1,x2;
+	cout<<"Nhap vao a, b, c: ";
 	cin>>a>>b>>c;
 	if(Ptb2(a,b,c,&x1,&x2) == -1){
 		cout<<"Phuong trinh vo nghiem.";

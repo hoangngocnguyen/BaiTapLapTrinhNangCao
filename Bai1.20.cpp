@@ -15,6 +15,7 @@ int DienTich(double a, double b, double c, double *S){
 }
 int main(){
 	double a,b,c,S;
+	cout<<"Nhap do dai cac canh cua tam giac: ";
 	cin>>a>>b>>c;
 	if(DienTich(a,b,c,&S) == 1){
 		cout<<"Dien tich tam giac bang: "<<fixed<<setprecision(2)<<S;
